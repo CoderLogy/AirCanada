@@ -1,3 +1,71 @@
-body{
-    font-family:'Tahoma', sans-serif;
+body {
+    font-family: 'Tahoma', sans-serif;
+    display: grid;
+    grid-template-areas:
+        'header header header header header'
+        'home home home home home'
+        'review review review review review'
+        'jobs jobs jobs jobs jobs'
+        'faq faq faq faq faq'
+        'footer footer footer footer footer';
 }
+
+nav li,
+nav a {
+    text-decoration: none;
+    list-style: none;
+}
+
+ header{
+    grid-area: header;
+    padding: 1rem;
+ }
+ nav{
+   display: grid;
+   grid-template-columns: auto 1fr auto;
+   align-items: center;
+   margin: 0 auto;
+ }
+ nav ul{
+   display: grid;
+   grid-template-columns: repeat(5, auto);
+   gap: 2.5rem;
+ }
+ .Home{
+    grid-area: home;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: auto;
+    padding: 0 0.5rem;
+ }
+ .Home > img{
+   width: 100%;
+   height: 400px;
+   object-fit: cover;
+   border-radius: 8px;
+ }
+ .homeCards{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 2rem;
+   margin-top: 2rem;
+ }
+ .homeCards img{
+   width: 100%;
+   height: 250px;
+   object-fit: cover;
+   border-radius: 8px;
+ }
+ .Reviews{
+    grid-area: review;
+ }
+ .Jobs{
+    grid-area: jobs;
+ }
+ .faq{
+    grid-area: faq;
+ }
+ .footer{
+    grid-area: footer;
+ }
