@@ -95,7 +95,7 @@ h1 {
 
 .profile {
    border-radius: 16px;
-   transition: 0.3s all ease;
+   transition: all 0.3s ease;
 }
 .personImage{
    width: auto;
@@ -107,11 +107,17 @@ h1 {
 }
 .profile button{
    margin: 20px;
+   background-color:transparent;
+   border: none;
+   padding: 10px;
+   transition: all 0.3s ease;
+   
 }
 .Counter svg, .profile svg{
    width: 100%;
    height: 1.5rem;
    align-self: center;
+   fill: currentColor;
 }
 #nextBtn{
 
@@ -121,6 +127,9 @@ h1 {
 }
 #DisLike{
    transform: rotate(180deg);
+}
+#DisLike:hover,#Like:hover{
+   color: white;
 }
 .profile:hover {
    transform: translateY(-5px);
