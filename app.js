@@ -193,3 +193,9 @@ function search() {
 
 // Run the search function whenever the user types in the search bar
 document.querySelector('#searchBar').addEventListener('input', search);
+
+function displayCharacter(index) {
+    const characterKeys = Object.keys(siliconValleyCharacters);
+    let charcter = siliconValleyCharacters(characterKeys[index])
+    
+}
