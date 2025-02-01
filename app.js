@@ -1,6 +1,5 @@
 const headerChange = document.querySelector("header");
 const heroBannerChange = document.querySelector('.heroBanner');
-const searchBar = document.querySelector('#searchBar');
 const nextBtn = document.querySelector('#nextBtn');
 const previousBtn = document.querySelector('#previousBtn');
 const like = document.querySelector('#Like');
@@ -181,6 +180,16 @@ function randoApplyThemeColors() {
 };
 colorFlipper.addEventListener('click', randoApplyThemeColors);
 
-function binarySearch(key) {
-    
+
+function search() {
+    const searchBar = document.querySelector('#searchBar').value.trim().toLowerCase();
+    const searchItem = Array.from(document.querySelectorAll('.cards'));
+
+    searchItem.forEach(item => {
+        const searchTextinItem = item.textContent.toLowerCase();
+        item.classList.toggle('hidden', !searchTextinItem.includes(searchBar));
+    });
 }
+
+// Run the search function whenever the user types in the search bar
+document.querySelector('#searchBar').addEventListener('input', search);
