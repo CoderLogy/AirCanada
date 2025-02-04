@@ -159,6 +159,15 @@ function randoApplyThemeColors() {
             });
         }
     });
+    navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(links => {
+        links.addEventListener('mouseover', () => {
+            links.style.color = randomTheme.navBarHover_color;
+        });
+        links.addEventListener('mouseout', () => {
+            links.style.color = '';
+        })
+    })
     disLike.addEventListener('focus', () => {
         disLike.style.backgroundColor = randomTheme.accent_color;
     });
@@ -193,9 +202,58 @@ function search() {
 
 // Run the search function whenever the user types in the search bar
 document.querySelector('#searchBar').addEventListener('input', search);
+const characterKeys = Object.keys(siliconValleyCharacters);
+let currentIndex = 0; // Global variable to track current character
 
-function displayCharacter(index) {
-    const characterKeys = Object.keys(siliconValleyCharacters);
-    let charcter = siliconValleyCharacters(characterKeys[index])
-    
+function updateDisplayCharacter(index) {
+    let character = siliconValleyCharacters[characterKeys[index]]; // Fixed object access
+    imageClass.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+    quotes.style.transition = "opacity 0.5s ease-in-out";
+    personName.style.transition = "opacity 0.5s ease-in-out";
+
+    imageClass.style.opacity = "0"; // Fade out
+    imageClass.style.transform = "scale(0.95)"; // Slight shrink effect
+    imageClass.style.transform = "translate(20px)"
+    quotes.style.opacity = "0";
+    personName.style.opacity = "0";
+    setTimeout(() => {
+        imageClass.src = character.image;
+        quotes.textContent = character.quote;
+        personName.textContent = character.name;
+        likeNumbers.textContent = character.likes.length;
+        dislikeNumbers.textContent = character.dislikes.length; // Fixed dislikes count
+        imageClass.style.opacity = "1"; // Fade in
+        imageClass.style.transform = "scale(1)"; // Slight grow effect
+        imageClass.style.transform = "translate(-10px)"
+        quotes.style.opacity = "1";
+        personName.style.opacity = "1";
+    }, 500);
 }
+
+// Initialize with the first character
+updateDisplayCharacter(currentIndex);
+
+nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % characterKeys.length; // Update index
+    updateDisplayCharacter(currentIndex); // Pass updated index
+});
+
+previousBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1+ characterKeys.length) % characterKeys.length; // Update index
+    updateDisplayCharacter(currentIndex); // Pass updated index
+});
+
+like.addEventListener("click", () => {
+    siliconValleyCharacters[characterKeys[currentIndex]].likes.push(Date.now());
+    likeNumbers.textContent = siliconValleyCharacters[characterKeys[currentIndex]].likes.length;
+})
+disLike.addEventListener("click", () => {
+    siliconValleyCharacters[characterKeys[currentIndex]].dislikes.push(Date.now());
+    dislikeNumbers.textContent = siliconValleyCharacters[characterKeys[currentIndex]].dislikes.length;
+})
+reset.addEventListener("click",()=>{
+    siliconValleyCharacters[characterKeys[currentIndex]].dislikes = [];
+    siliconValleyCharacters[characterKeys[currentIndex]].likes = [];
+    dislikeNumbers.textContent = 0;
+    likeNumbers.textContent = 0;
+})

@@ -234,7 +234,7 @@ nav ul li a:hover {
    background-color: #fff;
    border-radius: 16px;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   max-width: 600px;
+   width: 800px;
    margin: auto;
 }
 
@@ -245,18 +245,32 @@ nav ul li a:hover {
    /*margin-left: calc(100%/5);*/
    padding: 0;
    margin: 0;
-   min-height: 30px;
-   max-height: 500px;
    width: auto;
    overflow: hidden;
    background: #f0f0f0;
 }
+.Image,
+.quotes,
+.personName,.personImage{
+   opacity: 1;
+   /* Default state */
+   transition: all 0.5s ease-in-out;
+}
 
 .Image {
+   height: 250px;
+   width: 320px;
+   display: block;
+   object-fit: cover;
+   max-width: 500px;
    overflow: hidden;
    margin-left: -40px;
    margin-top: -5px;
    margin-right: -30px;
+}
+.personImage:hover{
+   transform: translateY(-5px);
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .profile button {
@@ -318,7 +332,7 @@ figcaption {
 
 #Like:focus,
 #DisLike:focus {
-   padding: 7.5px;
+   padding: 12.5px;
    background-color: #ed152a;
    /* Button color */
    color: white;
